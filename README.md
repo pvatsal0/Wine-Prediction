@@ -7,9 +7,13 @@ To begin with, navigate to the analytics section in the AWS dashboard and click 
 
 Prediction without Docker:
 •	Creating EC2 Instance
+
 Step 1: Under Compute Column in the AWS Management Console Click EC2
+
 Step 2: Select the AMI of your choice. Amazon Linux 2 AMI is usually preferred.
+
 Launch EC2 Instance
+
 •	Installing Libraries on EC2 Instance
 sudo yum update -y
 python –version
@@ -21,19 +25,28 @@ pip install sklearn
 Install Spark and hadoop
 wget http://archive.apache.org/dist/spark/spark-3.0.0/spark-3.0.0-bin-hadoop2.7.tgz
 sudo tar -zxvf spark-3.0.0-bin-hadoop2.7.tgz
+
 •	Running your Application in EC2
+
 Copy the wine2.py file to the Ec2 instance and spark-submit wine2.py to run the code in ec2.
 
 
 Prediction with Docker:
 •	Installation and Building Docker
 Follow above steps (Prediction without-Docker) and update sudo apt update -y
+
 •	Install Docker “sudo yum install docker -y”
+
 •	Start the Service by using “sudo service docker start”
+
 •	Add ec2-user to docker group by “sudo usermod -a -G docker ec2-user”
+
 •	Build Dockerfile “sudo docker build . -f Dockerfile -t wine”
+
 •	Pushing and Pulling created Image to DockerHub by login DockerHub and by command “docker pull pvatsal/wine:latest”
 
 Running Application with Docker
+
 Run: sudo docker pull pvatsal/wine:latest
+
 docker run -it pvatsal/wine:latest s3//mywineproject/ValidationDataset.csv
