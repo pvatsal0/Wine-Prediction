@@ -19,11 +19,11 @@ features = np.array(val.select('features').collect())
 label = np.array(val.select('label').collect())
 
 def to_labeled_point(sc, features, labels):
-labeled_points = []
-for x, y in zip(features, labels):
-lp = (Vectors.dense(x), y)
-labeled_points.append(lp)
-return sc.parallelize(labeled_points)
+    labeled_points = []
+    for x, y in zip(features, labels):
+        lp = (Vectors.dense(x), y)
+        labeled_points.append(lp)
+    return sc.parallelize(labeled_points)
 
 dataset = to_labeled_point(sc, features, label)
 
